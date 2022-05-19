@@ -31,6 +31,7 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
         public Repository(DbContext dbContext)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            _dbContext.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.TrackAll;
             _dbSet = _dbContext.Set<TEntity>();
         }
 
@@ -77,7 +78,9 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
 
             if (disableTracking)
             {
-                query = query.AsNoTracking();
+                //we are not disabling tracking as this prevents us from having events when loading entities.
+                //These events allow us to prevent data leakage
+                //query = query.AsNoTracking();
             }
 
             if (include != null)
@@ -125,7 +128,9 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
 
             if (disableTracking)
             {
-                query = query.AsNoTracking();
+                //we are not disabling tracking as this prevents us from having events when loading entities.
+                //These events allow us to prevent data leakage
+                //query = query.AsNoTracking();
             }
 
             if (include != null)
@@ -177,7 +182,9 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
 
             if (disableTracking)
             {
-                query = query.AsNoTracking();
+                //we are not disabling tracking as this prevents us from having events when loading entities.
+                //These events allow us to prevent data leakage
+                //query = query.AsNoTracking();
             }
 
             if (include != null)
@@ -233,7 +240,9 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
 
             if (disableTracking)
             {
-                query = query.AsNoTracking();
+                //we are not disabling tracking as this prevents us from having events when loading entities.
+                //These events allow us to prevent data leakage
+                //query = query.AsNoTracking();
             }
 
             if (include != null)
@@ -288,7 +297,9 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
 
             if (disableTracking)
             {
-                query = query.AsNoTracking();
+                //we are not disabling tracking as this prevents us from having events when loading entities.
+                //These events allow us to prevent data leakage
+                //query = query.AsNoTracking();
             }
 
             if (include != null)
@@ -347,7 +358,9 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
 
             if (disableTracking)
             {
-                query = query.AsNoTracking();
+                //we are not disabling tracking as this prevents us from having events when loading entities.
+                //These events allow us to prevent data leakage
+                //query = query.AsNoTracking();
             }
 
             if (include != null)
@@ -395,7 +408,9 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
 
             if (disableTracking)
             {
-                query = query.AsNoTracking();
+                //we are not disabling tracking as this prevents us from having events when loading entities.
+                //These events allow us to prevent data leakage
+                //query = query.AsNoTracking();
             }
 
             if (include != null)
@@ -435,7 +450,9 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
 
             if (disableTracking)
             {
-                query = query.AsNoTracking();
+                //we are not disabling tracking as this prevents us from having events when loading entities.
+                //These events allow us to prevent data leakage
+                //query = query.AsNoTracking();
             }
 
             if (include != null)
@@ -485,7 +502,9 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
 
             if (disableTracking)
             {
-                query = query.AsNoTracking();
+                //we are not disabling tracking as this prevents us from having events when loading entities.
+                //These events allow us to prevent data leakage
+                //query = query.AsNoTracking();
             }
 
             if (include != null)
@@ -524,7 +543,9 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
 
             if (disableTracking)
             {
-                query = query.AsNoTracking();
+                //we are not disabling tracking as this prevents us from having events when loading entities.
+                //These events allow us to prevent data leakage
+                //query = query.AsNoTracking();
             }
 
             if (include != null)
@@ -950,7 +971,9 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
 
             if (disableTracking)
             {
-                query = query.AsNoTracking();
+                //we are not disabling tracking as this prevents us from having events when loading entities.
+                //These events allow us to prevent data leakage
+                //query = query.AsNoTracking();
             }
 
             if (include != null)
@@ -999,7 +1022,9 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
 
             if (disableTracking)
             {
-                query = query.AsNoTracking();
+                //we are not disabling tracking as this prevents us from having events when loading entities.
+                //These events allow us to prevent data leakage
+                //query = query.AsNoTracking();
             }
 
             if (include != null)
