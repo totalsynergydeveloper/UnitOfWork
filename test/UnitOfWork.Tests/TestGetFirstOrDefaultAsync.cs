@@ -27,7 +27,7 @@ namespace Arch.EntityFrameworkCore.UnitOfWork.Tests
         public async void TestGetFirstOrDefaultAsyncGetsCorrectItem()
         {
             var repository = new Repository<City>(db);
-            var city = await repository.GetFirstOrDefaultAsync(predicate: t => t.Name == "A");
+            var city = repository.GetFirstOrDefault(predicate: t => t.Name == "A");
             Assert.NotNull(city);
             Assert.Equal(1, city.Id);            
         }
@@ -36,7 +36,7 @@ namespace Arch.EntityFrameworkCore.UnitOfWork.Tests
         public async void TestGetFirstOrDefaultAsyncReturnsNullValue()
         {
             var repository = new Repository<City>(db);
-            var city = await repository.GetFirstOrDefaultAsync(predicate: t => t.Name == "Easy-E");
+            var city = repository.GetFirstOrDefault(predicate: t => t.Name == "Easy-E");
             Assert.Null(city);            
         }
 
@@ -44,7 +44,7 @@ namespace Arch.EntityFrameworkCore.UnitOfWork.Tests
         public async void TestGetFirstOrDefaultAsyncCanInclude()
         {
             var repository = new Repository<City>(db);
-            var city = await repository.GetFirstOrDefaultAsync(
+            var city = repository.GetFirstOrDefault(
                 predicate: c => c.Name == "A",
                 include: source => source.Include(t => t.Towns));
             Assert.NotNull(city);

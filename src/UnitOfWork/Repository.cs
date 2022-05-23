@@ -202,16 +202,27 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
                 query = query.IgnoreQueryFilters();
             }
 
+
+            IPagedList<TEntity> ret;
             if (orderBy != null)
             {
-                return orderBy(query).ToPagedList(pageIndex, pageSize);
+                ret = orderBy(query).ToPagedList(pageIndex, pageSize);
             }
             else
             {
-                return query.ToPagedList(pageIndex, pageSize);
+                ret =  query.ToPagedList(pageIndex, pageSize);
             }
+            if (disableTracking && ret != null)
+            {
+                foreach (var item in ret.Items)
+                {
+                    _dbContext.Entry(item).State = EntityState.Detached;
+                }
+            }
+            return ret;
         }
 
+        /*
         /// <summary>
         /// Gets the <see cref="IPagedList{TEntity}"/> based on a predicate, orderby delegate and page information. This method default no-tracking query.
         /// </summary>
@@ -260,15 +271,26 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
                 query = query.IgnoreQueryFilters();
             }
 
+            IPagedList<TEntity> ret;
             if (orderBy != null)
             {
-                return orderBy(query).ToPagedListAsync(pageIndex, pageSize, 0, cancellationToken);
+                ret = await orderBy(query).ToPagedListAsync(pageIndex, pageSize, 0, cancellationToken);
             }
             else
             {
-                return query.ToPagedListAsync(pageIndex, pageSize, 0, cancellationToken);
+                ret = await query.ToPagedListAsync(pageIndex, pageSize, 0, cancellationToken);
             }
+            if (disableTracking && ret != null)
+            {
+                foreach (var item in ret.Items)
+                {
+                    _dbContext.Entry(item).State = EntityState.Detached;
+                }
+            }
+            return ret;
+
         }
+        */
 
         /// <summary>
         /// Gets the <see cref="IPagedList{TResult}"/> based on a predicate, orderby delegate and page information. This method default no-tracking query.
@@ -317,16 +339,26 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
                 query = query.IgnoreQueryFilters();
             }
 
+            IPagedList<TResult> ret;
             if (orderBy != null)
             {
-                return orderBy(query).Select(selector).ToPagedList(pageIndex, pageSize);
+                ret = orderBy(query).Select(selector).ToPagedList(pageIndex, pageSize);
             }
             else
             {
-                return query.Select(selector).ToPagedList(pageIndex, pageSize);
+                ret = query.Select(selector).ToPagedList(pageIndex, pageSize);
             }
+            if (disableTracking && ret != null)
+            {
+                foreach (var item in ret.Items)
+                {
+                    _dbContext.Entry(item).State = EntityState.Detached;
+                }
+            }
+            return ret;
         }
 
+        /*
         /// <summary>
         /// Gets the <see cref="IPagedList{TEntity}"/> based on a predicate, orderby delegate and page information. This method default no-tracking query.
         /// </summary>
@@ -387,6 +419,7 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
                 return query.Select(selector).ToPagedListAsync(pageIndex, pageSize, 0, cancellationToken);
             }
         }
+        */
 
         /// <summary>
         /// Gets the first or default entity based on a predicate, orderby delegate and include delegate. This method default no-tracking query.
@@ -428,17 +461,24 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
                 query = query.IgnoreQueryFilters();
             }
 
+            TEntity ret;
             if (orderBy != null)
             {
-                return orderBy(query).FirstOrDefault();
+                ret = orderBy(query).FirstOrDefault();
             }
             else
             {
-                return query.FirstOrDefault();
+                ret = query.FirstOrDefault();
             }
+            if (disableTracking && ret != null)
+            {
+                _dbContext.Entry(ret).State = EntityState.Detached;
+            }
+            return ret;
         }
 
 
+        /*
         /// <inheritdoc />
         public virtual async Task<TEntity> GetFirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
@@ -479,6 +519,7 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
                 return await query.FirstOrDefaultAsync();
             }
         }
+        */
 
         /// <summary>
         /// Gets the first or default entity based on a predicate, orderby delegate and include delegate. This method default no-tracking query.
@@ -522,16 +563,23 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
                 query = query.IgnoreQueryFilters();
             }
 
+            TResult ret;
             if (orderBy != null)
             {
-                return orderBy(query).Select(selector).FirstOrDefault();
+                ret = orderBy(query).Select(selector).FirstOrDefault();
             }
             else
             {
-                return query.Select(selector).FirstOrDefault();
+                ret = query.Select(selector).FirstOrDefault();
             }
+            if (disableTracking && ret != null)
+            {
+                _dbContext.Entry(ret).State = EntityState.Detached;
+            }
+            return ret;
         }
 
+        /*
         /// <inheritdoc />
         public virtual async Task<TResult> GetFirstOrDefaultAsync<TResult>(Expression<Func<TEntity, TResult>> selector,
                                                   Expression<Func<TEntity, bool>> predicate = null,
@@ -572,6 +620,7 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
                 return await query.Select(selector).FirstOrDefaultAsync();
             }
         }
+        */
 
         /// <summary>
         /// Uses raw SQL queries to fetch the specified <typeparamref name="TEntity" /> data.
@@ -952,6 +1001,7 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
             return  await _dbSet.ToListAsync();
         }
 
+        /*
         /// <summary>
         /// Gets all entities. This method is not recommended
         /// </summary>
@@ -1052,6 +1102,8 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
                 return await query.Select(selector).ToListAsync();
             }
         }
+        */
+
 
         /// <summary>
         /// Change entity state for patch method on web api.

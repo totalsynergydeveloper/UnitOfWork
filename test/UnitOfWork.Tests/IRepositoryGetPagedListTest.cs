@@ -41,7 +41,7 @@ namespace Arch.EntityFrameworkCore.UnitOfWork.Tests
         {
             var repository = new Repository<City>(db);
 
-            var page = await repository.GetPagedListAsync(predicate: t => t.Name == "C", include: source => source.Include(t => t.Country), pageSize: 1);
+            var page = repository.GetPagedList(predicate: t => t.Name == "C", include: source => source.Include(t => t.Country), pageSize: 1);
 
             Assert.Equal(1, page.Items.Count);
             Assert.NotNull(page.Items[0].Country);
@@ -56,7 +56,7 @@ namespace Arch.EntityFrameworkCore.UnitOfWork.Tests
         {
             var repository = new Repository<Country>(db);
 
-            var page = await repository.GetPagedListAsync(predicate: t => t.Name == "A", include: country => country.Include(c => c.Cities).ThenInclude(city => city.Towns), pageSize: 1);
+            var page = repository.GetPagedList(predicate: t => t.Name == "A", include: country => country.Include(c => c.Cities).ThenInclude(city => city.Towns), pageSize: 1);
 
             Assert.Equal(1, page.Items.Count);
             Assert.NotNull(page.Items[0].Cities);

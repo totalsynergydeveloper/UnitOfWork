@@ -52,6 +52,7 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
                                          bool disableTracking = true,
                                          bool ignoreQueryFilters = false);
 
+        /*
         /// <summary>
         /// Gets the <see cref="IPagedList{TEntity}"/> based on a predicate, orderby delegate and page information. This method default no-tracking query.
         /// </summary>
@@ -75,6 +76,7 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
                                                     bool disableTracking = true,
                                                     CancellationToken cancellationToken = default(CancellationToken),
                                                     bool ignoreQueryFilters = false);
+        */
 
         /// <summary>
         /// Gets the <see cref="IPagedList{TResult}"/> based on a predicate, orderby delegate and page information. This method default no-tracking query.
@@ -98,6 +100,7 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
                                                   bool disableTracking = true,
                                                   bool ignoreQueryFilters = false) where TResult : class;
 
+        /*
         /// <summary>
         /// Gets the <see cref="IPagedList{TEntity}"/> based on a predicate, orderby delegate and page information. This method default no-tracking query.
         /// </summary>
@@ -123,6 +126,7 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
                                                              bool disableTracking = true,
                                                              CancellationToken cancellationToken = default(CancellationToken),
                                                              bool ignoreQueryFilters = false) where TResult : class;
+        */
 
         /// <summary>
         /// Gets the first or default entity based on a predicate, orderby delegate and include delegate. This method defaults to a read-only, no-tracking query.
@@ -158,7 +162,8 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
                                            bool disableTracking = true,
                                            bool ignoreQueryFilters = false);
 
-        /// <summary>
+        /*
+            /// <summary>
         /// Gets the first or default entity based on a predicate, orderby delegate and include delegate. This method defaults to a read-only, no-tracking query.
         /// </summary>
         /// <param name="selector">The selector for projection.</param>
@@ -175,7 +180,9 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
             bool disableTracking = true,
             bool ignoreQueryFilters = false);
+        */
 
+        /*
         /// <summary>
         /// Gets the first or default entity based on a predicate, orderby delegate and include delegate. This method defaults to a read-only, no-tracking query.
         /// </summary>
@@ -191,6 +198,7 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
             bool disableTracking = true,
             bool ignoreQueryFilters = false);
+        */
 
         /// <summary>
         /// Uses raw SQL queries to fetch the specified <typeparamref name="TEntity" /> data.
@@ -243,7 +251,7 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
                                                   Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
                                                   bool disableTracking = true,
                                                   bool ignoreQueryFilters = false);
-
+        /*
         /// <summary>
         /// Gets all entities. This method is not recommended
         /// </summary>
@@ -283,7 +291,9 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
                                                   Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
                                                   bool disableTracking = true,
                                                   bool ignoreQueryFilters = false);
+        */
 
+        /*
         /// <summary>
         /// Gets all entities. This method is not recommended
         /// </summary>
@@ -301,6 +311,7 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
             bool disableTracking = true,
             bool ignoreQueryFilters = false);
+        */
 
         /// <summary>
         /// Gets the count based on a predicate.

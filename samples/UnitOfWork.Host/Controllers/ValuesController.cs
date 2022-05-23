@@ -149,9 +149,9 @@ namespace Arch.EntityFrameworkCore.UnitOfWork.Host.Controllers
 
         // GET api/values
         [HttpGet]
-        public async Task<IList<Blog>> Get()
+        public IList<Blog> Get()
         {
-            return await _unitOfWork.GetRepository<Blog>().GetAllAsync(include: source => source.Include(blog => blog.Posts).ThenInclude(post => post.Comments));
+            return _unitOfWork.GetRepository<Blog>().GetAll(include: source => source.Include(blog => blog.Posts).ThenInclude(post => post.Comments)).ToList();
         }
 
         // GET api/values/Page/5/10
@@ -161,7 +161,7 @@ namespace Arch.EntityFrameworkCore.UnitOfWork.Host.Controllers
             // projection
             var items = _unitOfWork.GetRepository<Blog>().GetPagedList(b => new { Name = b.Title, Link = b.Url });
 
-            return await _unitOfWork.GetRepository<Blog>().GetPagedListAsync(pageIndex: pageIndex, pageSize: pageSize);
+            return _unitOfWork.GetRepository<Blog>().GetPagedList(pageIndex: pageIndex, pageSize: pageSize);
         }
 
         // GET api/values/Search/a1
@@ -180,7 +180,7 @@ namespace Arch.EntityFrameworkCore.UnitOfWork.Host.Controllers
 
             var projection = _unitOfWork.GetRepository<Blog>().GetFirstOrDefault(b => new { Name = b.Title, Link = b.Url }, predicate: x => x.Title.Contains(term));
 
-            return await _unitOfWork.GetRepository<Blog>().GetPagedListAsync(predicate: x => x.Title.Contains(term));
+            return _unitOfWork.GetRepository<Blog>().GetPagedList(predicate: x => x.Title.Contains(term));
         }
 
         // GET api/values/4
