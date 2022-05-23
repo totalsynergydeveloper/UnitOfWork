@@ -25,7 +25,7 @@
 
   <Target Condition=" '$(TargetFramework)' == 'netstandard2.0'" Name="NugetPackAutoVersioning" AfterTargets="Build">
     <Exec Command="RD /S /Q &quot;$(ProjectDir)bin/nuget" />
-    <Exec Command="dotnet pack -p:PackageVersion=$([System.DateTime]::Now.ToString(&quot;yyyy.MM.dd.1&quot;)) --include-source -p:SymbolPackageFormat=snupkg --no-build --configuration $(Configuration) --output &quot;$(ProjectDir)bin/nuget" />
+    <Exec Command="dotnet pack -p:PackageVersion=$([System.DateTime]::Now.ToString(&quot;yyyy.MM.dd.2&quot;)) --include-source -p:SymbolPackageFormat=snupkg --no-build --configuration $(Configuration) --output &quot;$(ProjectDir)bin/nuget" />
   </Target>
 
 </Project>
