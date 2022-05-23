@@ -31,7 +31,7 @@ namespace Arch.EntityFrameworkCore.UnitOfWork
         public Repository(DbContext dbContext)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-            _dbContext.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.TrackAll;
+            //_dbContext.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.TrackAll;
             _dbSet = _dbContext.Set<TEntity>();
         }
 
